@@ -9,7 +9,7 @@ const ReadMovies = () => {
     }, [])
 
     useEffect(() => {
-        console.log(movies)
+        console.log('movies are ', movies)
     }, [movies])
 
     const getMovies = () => {
@@ -36,11 +36,10 @@ const ReadMovies = () => {
             <ul>
 
                 {movies.map((movie) => (
-                    <>
-                        <li key={movie.id}>{movie.data.name}
-                            <button key={movie.id} onClick={() => handleDelete(movie.id)}> dlt</button>
-                        </li>
-                    </>
+
+                    <li key={movie.id}>{movie.data.name}
+                        <button onClick={() => handleDelete(movie.id)}> dlt</button>
+                    </li>
                 ))}
             </ul>
         </>
