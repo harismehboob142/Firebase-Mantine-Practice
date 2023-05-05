@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { collection, getDocs } from '@firebase/firestore'
+import { collection, deleteDoc, doc, getDocs } from '@firebase/firestore'
 import { db } from '../Database/FirebaseConfig'
 const ReadMovies = () => {
 
@@ -21,13 +21,27 @@ const ReadMovies = () => {
                 setMovies(movs);
             }).catch(error => { console.log(error) })
     }
+    const handleDelete = (id) => {
+        // alert(id)
+        const movieCollectionRef = collection(db, 'movies');
+        const docRef = doc(db, 'movies', id)
+        deleteDoc(docRef)
+            .then(console.log(`${id} doc deleted`))
+            .catch(error => console.log('error deleting'))
+    }
 
     return (
         <>
             <h1>list of movies</h1>
             <ul>
 
-                {movies.map((movie) => (<li key={movie.id}>{movie.data.name}</li>))}
+                {movies.map((movie) => (
+                    <>
+                        <li key={movie.id}>{movie.data.name}
+                            <button key={movie.id} onClick={() => handleDelete(movie.id)}> dlt</button>
+                        </li>
+                    </>
+                ))}
             </ul>
         </>
     )

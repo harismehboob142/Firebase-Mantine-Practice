@@ -11,7 +11,10 @@ const AddMovie = () => {
         // console.log(name)
         const moviesCollectionRef = collection(db, 'movies')
         addDoc(moviesCollectionRef, { name: name, director: director })
-            .then((response) => console.log(response))
+            .then((response) => {
+                console.log(response)
+                setName('')
+            })
             .catch((error) => console.log(error))
 
     }

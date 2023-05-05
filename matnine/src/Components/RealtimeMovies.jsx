@@ -6,6 +6,7 @@ import { useState } from 'react'
 
 const RealtimeMovies = () => {
 
+    // reference to movie collection in db object. 
     const movieCollectionRef = collection(db, 'movies')
     const [movies, setMovies] = useState([])
 
